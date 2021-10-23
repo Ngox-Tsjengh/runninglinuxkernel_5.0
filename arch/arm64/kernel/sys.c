@@ -39,6 +39,25 @@ SYSCALL_DEFINE6(mmap, unsigned long, addr, unsigned long, len,
 	return ksys_mmap_pgoff(addr, len, prot, flags, fd, off >> PAGE_SHIFT);
 }
 
+SYSCALL_DEFINE2(getpuid, pid_t __user *, uid_t __user *, uid)
+{
+	if (pid == NULL && uid == NULL) {
+		return -EINVAL;
+	}
+
+	if (pid != NULL) {
+		*pid = task_tgid_vnr(current);
+	}
+	printk("%s: pid=%d\n", __func__, *pid);
+
+	if (uid != NULL) {
+		*uid = from_kuid_munged(current_user_ns(), current_uid());
+	}
+	printk("%s: uid=%d\n", __func__, *pid);
+
+	return 0;
+}
+
 SYSCALL_DEFINE1(arm64_personality, unsigned int, personality)
 {
 	if (personality(personality) == PER_LINUX32 &&
