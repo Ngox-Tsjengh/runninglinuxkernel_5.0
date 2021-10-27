@@ -1,6 +1,6 @@
 BASEINCLUDE ?= /lib/modules/`uname -r`/build
 
-mydemo_misc-objs := mydemodrv.o
+mydemo-objs := mydemodrv.o
 
 obj-m := mydemo.o
 
