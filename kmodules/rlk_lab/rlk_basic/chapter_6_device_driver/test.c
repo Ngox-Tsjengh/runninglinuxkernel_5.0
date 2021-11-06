@@ -3,6 +3,7 @@
 #include <string.h>	//memset
 #include <unistd.h>
 #include <fcntl.h>
+#include <fcntl.h>
 #define DEMO_DEV_NAME "/dev/my_demo_dev"
 
 int main() {
